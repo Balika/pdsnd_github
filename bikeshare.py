@@ -179,7 +179,7 @@ def get_user_input(size):
         user_input = input('Enter number of rows to display: Number should not be greater than {}: '.format(size))        
     return int(user_input)
 	
-def loop_through_data_frame(df, start_index, end_index):
+def extract_rows_frame_data(df, start_index, end_index):
 	if end_index < len(df):
 		no_of_rows = 0#variable initialized          
 		#User is invited to enter number of rows to display after the initial display 
@@ -207,7 +207,7 @@ def display_raw_data(df):
         show_data = input('\nDo you wish to view more data on bikeshare? Enter yes/no. \n').lower()
         if show_data != 'yes':
             break 
-		loop_through_data_frame(df, start_index,end_index)
+		extract_rows_frame_data(df, start_index,end_index)
         
        
 def main():
