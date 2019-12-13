@@ -178,7 +178,27 @@ def get_user_input(size):
         print('Please you need to enter a number less than or equal to {} to continue. \n'.format(size))
         user_input = input('Enter number of rows to display: Number should not be greater than {}: '.format(size))        
     return int(user_input)
-
+	
+def loop_through_data_frame(df, start_index, end_index):
+	if end_index < len(df):
+		no_of_rows = 0#variable initialized          
+		#User is invited to enter number of rows to display after the initial display 
+		if start_index > 0 :
+			no_of_rows = get_user_input(len(df)-start_index)# Number of rows entered should not exceed remaining rows in dataframe                
+		end_index+=no_of_rows
+		
+		print('\nCalculating User Stats...\n')
+		start_time = time.time()
+		
+		print(df.iloc[start_index:end_index])
+		start_index = end_index
+		
+		print("\nThis took %s seconds." % (time.time() - start_time))
+		print('-'*40)            
+	else:  
+		print('You have reached end of the dataset! \n')
+		break
+		
 def display_raw_data(df):
     """Displays raw data on bikeshare upon user request."""
     start_index = 0
@@ -187,25 +207,8 @@ def display_raw_data(df):
         show_data = input('\nDo you wish to view more data on bikeshare? Enter yes/no. \n').lower()
         if show_data != 'yes':
             break 
-   
-        if end_index < len(df):
-            no_of_rows = 0#variable initialized          
-            #User is invited to enter number of rows to display after the initial display 
-            if start_index > 0 :
-                no_of_rows = get_user_input(len(df)-start_index)# Number of rows entered should not exceed remaining rows in dataframe                
-            end_index+=no_of_rows
-            
-            print('\nCalculating User Stats...\n')
-            start_time = time.time()
-            
-            print(df.iloc[start_index:end_index])
-            start_index = end_index
-            
-            print("\nThis took %s seconds." % (time.time() - start_time))
-            print('-'*40)            
-        else:  
-            print('You have reached end of the dataset! \n')
-            break
+		loop_through_data_frame(df, start_index,end_index)
+        
        
 def main():
     while True:
