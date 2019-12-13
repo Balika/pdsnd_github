@@ -173,6 +173,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 def get_user_input(size):
+	""" Prompts user to enter number of rows to display """
     user_input = input('Enter number of rows to display. Number should not be greater than {}: '.format(size))
     while not user_input.isdigit() or int(user_input) > size:
         print('Please you need to enter a number less than or equal to {} to continue. \n'.format(size))
